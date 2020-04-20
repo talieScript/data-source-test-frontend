@@ -21,18 +21,18 @@
     </v-app-bar>
 
     <v-navigation-drawer v-model="menu" absolute temporary>
-      <SubmissionsList :submissions="submissions" />
+      <SubmissionsList
+        @changeSubmission="changeActiveSubmission"
+        :submissions="submissions"
+      />
     </v-navigation-drawer>
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
+    <v-content> </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
 import SubmissionsList from "./components/SubmissionsList.vue";
 import fakeSubmssions from "./dummyData/submissions.ts";
 
@@ -60,7 +60,6 @@ export interface Submission {
 export default Vue.extend({
   name: "App",
   components: {
-    HelloWorld,
     SubmissionsList
   },
   data() {
@@ -68,6 +67,11 @@ export default Vue.extend({
       menu: true,
       submissions: []
     };
+  },
+  methods: {
+    changeActiveSubmission(id) {
+      console.log(id);
+    }
   },
   mounted() {
     this.submissions = fakeSubmssions;
