@@ -27,7 +27,9 @@
       />
     </v-navigation-drawer>
 
-    <v-content> </v-content>
+    <v-content>
+      <submssion-form :active="activeSubmission" />
+    </v-content>
   </v-app>
 </template>
 
@@ -35,6 +37,7 @@
 import Vue from "vue";
 import SubmissionsList from "./components/SubmissionsList.vue";
 import fakeSubmssions from "./dummyData/submissions.ts";
+import SubmssionForm from "./components/SubmissionForm.vue";
 
 export interface Submission {
   id: number;
@@ -60,21 +63,26 @@ export interface Submission {
 export default Vue.extend({
   name: "App",
   components: {
-    SubmissionsList
+    SubmissionsList,
+    SubmssionForm
   },
   data() {
     return {
       menu: true,
-      submissions: []
+      submissions: [],
+      activeSubmission: {}
     };
   },
   methods: {
     changeActiveSubmission(id) {
-      console.log(id);
+      this.activeSubmission = this.submissions.find(submission => {
+        return submission.id == id;
+      });
     }
   },
   mounted() {
     this.submissions = fakeSubmssions;
+    this.activeSubmission = this.submissions[0];
   }
 });
 </script>

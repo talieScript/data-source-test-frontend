@@ -1,9 +1,22 @@
 <template>
-  <div></div>
+  <div>
+    {{ active }}
+  </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Vue, { PropOptions } from "vue";
+import Submission from "../App.vue";
+
+export default Vue.extend({
+  name: "SubmssionForm",
+  props: {
+    active: {
+      type: Object,
+      required: true
+    } as PropOptions<Submission>
+  }
+});
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
