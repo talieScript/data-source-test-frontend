@@ -1,61 +1,51 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <v-btn @click="menu = !menu" text>
+          <v-icon>mdi-menu</v-icon>
+          <span class="ml-2">Submissions</span>
+        </v-btn>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-img
+        alt="Stratum Logo"
+        class="shrink mr-2"
+        contain
+        src="https://res-2.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/41873246e73b8cf3ed5f"
+        transition="scale-transition"
+        width="150"
+      />
     </v-app-bar>
 
+    <v-navigation-drawer v-model="menu" absolute temporary>
+      <SubmissionsList :submissions="submissions" />
+    </v-navigation-drawer>
+
     <v-content>
-      <HelloWorld/>
+      <HelloWorld />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Vue from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import SubmissionsList from "./components/SubmissionsList.vue";
 
 export default Vue.extend({
-  name: 'App',
-
+  name: "App",
   components: {
     HelloWorld,
+    SubmissionsList
   },
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      menu: true,
+      submissions: []
+    };
+  }
 });
 </script>
