@@ -34,6 +34,28 @@
 import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import SubmissionsList from "./components/SubmissionsList.vue";
+import fakeSubmssions from "./dummyData/submissions.ts";
+
+export interface Submission {
+  id: number;
+  vesselName: string;
+  vesselImo: number;
+  dateTime: {
+    // iso string
+    date: string;
+    // unix timestamp
+    timeStamp: number;
+    // + or - offset
+    offSet: number;
+  };
+  fuels: {
+    LGO: number;
+    IFO: number;
+    MGO: number;
+  };
+  // sum of fuels
+  totalFuel: number;
+}
 
 export default Vue.extend({
   name: "App",
@@ -46,6 +68,9 @@ export default Vue.extend({
       menu: true,
       submissions: []
     };
+  },
+  mounted() {
+    this.submissions = fakeSubmssions;
   }
 });
 </script>
