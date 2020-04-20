@@ -3,9 +3,8 @@ export default [
     id: 1,
     vesselName: "HMS vessel",
     vesselImo: 1111,
-    dateTime: {
+    dateOffset: {
       date: "2020-04-20T11:27:17.448Z",
-      timeStamp: 1587382231623,
       offset: -1
     },
     fuels: {
@@ -19,9 +18,8 @@ export default [
     id: 2,
     vesselName: "HMS ship",
     vesselImo: 2222,
-    dateTime: {
+    dateOffset: {
       date: "2020-04-21T11:27:17.448Z",
-      timeStamp: 1587382231623,
       offset: 2
     },
     fuels: {
@@ -35,9 +33,8 @@ export default [
     id: 3,
     vesselName: "HMS ship",
     vesselImo: 3333,
-    dateTime: {
+    dateOffset: {
       date: "2020-04-22T11:27:17.448Z",
-      timeStamp: 1587382231623,
       offset: -12
     },
     fuels: {

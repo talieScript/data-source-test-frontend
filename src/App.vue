@@ -28,7 +28,11 @@
     </v-navigation-drawer>
 
     <v-content>
-      <submssion-form :active="activeSubmission" />
+      <submssion-form
+        v-if="activeSubmission.id"
+        @submit="submit"
+        :active="activeSubmission"
+      />
     </v-content>
   </v-app>
 </template>
@@ -36,20 +40,18 @@
 <script lang="ts">
 import Vue from "vue";
 import SubmissionsList from "./components/SubmissionsList.vue";
-import fakeSubmssions from "./dummyData/submissions.ts";
+import fakeSubmssions from "./dummyData/submissions";
 import SubmssionForm from "./components/SubmissionForm.vue";
 
 export interface Submission {
   id: number;
   vesselName: string;
   vesselImo: number;
-  dateTime: {
+  dateOffset: {
     // iso string
     date: string;
-    // unix timestamp
-    timeStamp: number;
     // + or - offset
-    offSet: number;
+    offset: number;
   };
   fuels: {
     LGO: number;
@@ -74,10 +76,19 @@ export default Vue.extend({
     };
   },
   methods: {
-    changeActiveSubmission(id) {
+    setActiveSubmission(value) {
+      this.activeSubmission = value;
+    },
+    changeActiveSubmission(id: string) {
       this.activeSubmission = this.submissions.find(submission => {
         return submission.id == id;
-      });
+      }) as Submission;
+    },
+    /**
+     * submit function here
+     */
+    submit(submission) {
+      console.log(submission);
     }
   },
   mounted() {
