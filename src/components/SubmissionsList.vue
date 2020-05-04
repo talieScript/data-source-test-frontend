@@ -7,6 +7,11 @@
           {{ submission.id }}
         </v-list-item-content>
       </v-list-item>
+      <v-list-item class="d-flex justify-center">
+        <v-btn @click="$emit('addSubmission')" color="success" fab small dark>
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-list-item>
     </v-list-item-group>
   </v-list>
 </template>
